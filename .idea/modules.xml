@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bugtracktor.iml" filepath="$PROJECT_DIR$/.idea/modules/bugtracktor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bugtracktor_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bugtracktor_main.iml" group="bugtracktor" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bugtracktor_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bugtracktor_test.iml" group="bugtracktor" />
+    </modules>
+  </component>
+</project>
