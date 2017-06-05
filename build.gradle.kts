@@ -38,11 +38,14 @@ val kotlinVersion = extra["kotlinVersion"] as String
 dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-web")
-//    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-//    compile("com.h2database:h2")
+
+    compile("io.jsonwebtoken:jjwt:0.7.0")
+
     compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
     compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7")
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,0 +1,9 @@
+app:
+  name: bugtracktor
+  user_cookie: c_user
+
+jwt:
+  header: Authorization
+  expires_in: 31540000 # 1 year
+  secret: tracktor
+  cookie: AUTH-TOKEN

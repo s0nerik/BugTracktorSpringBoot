@@ -1,13 +1,13 @@
 package bugtracktor
 
+import bugtracktor.models.Authority
 import bugtracktor.models.User
+import bugtracktor.repositories.AuthorityRepository
 import bugtracktor.repositories.IssueRepository
 import bugtracktor.repositories.ProjectRepository
 import bugtracktor.repositories.UserRepository
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.Module
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
-import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import org.bson.types.ObjectId
 import org.springframework.boot.CommandLineRunner
@@ -22,11 +22,17 @@ open class App {
     open fun init(
             userRepository: UserRepository,
             projectRepository: ProjectRepository,
-            issueRepository: IssueRepository) = CommandLineRunner {
+            issueRepository: IssueRepository,
+            authorityRepository: AuthorityRepository
+    ) = CommandLineRunner {
         userRepository.deleteAll()
-        userRepository.save(User("test@test.com", "0", "sick", "Vasya Pupkin", ""))
-
         projectRepository.deleteAll()
+        issueRepository.deleteAll()
+        authorityRepository.deleteAll()
+
+        authorityRepository.save(listOf(Authority("ROLE_USER"), Authority("ROLE_PROJECT_CREATOR")))
+
+        userRepository.save(User("test@test.com", "0", "sick", "Vasya Pupkin", "", authorityRepository.findAll()))
     }
 
     @Bean
