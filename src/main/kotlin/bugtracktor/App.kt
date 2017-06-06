@@ -31,7 +31,7 @@ open class App {
         issueRepository.deleteAll()
         authorityRepository.deleteAll()
 
-        authorityRepository.save(listOf(Authority("ROLE_USER"), Authority("ROLE_PROJECT_CREATOR")))
+        authorityRepository.save(listOf(Authority(SystemRole.USER), Authority(SystemRole.PROJECT_CREATOR), Authority(SystemRole.ADMIN)))
 
         userRepository.save(User("project_creator@test.com", "0", "sick", "Project creator", "", authorityRepository.findAll()))
         userRepository.save(User("user@test.com", "0", "sick", "User", "", listOf(Authority(SystemRole.USER))))
