@@ -1,6 +1,7 @@
 package bugtracktor
 
 import bugtracktor.models.Authority
+import bugtracktor.models.SystemRole
 import bugtracktor.models.User
 import bugtracktor.repositories.AuthorityRepository
 import bugtracktor.repositories.IssueRepository
@@ -32,7 +33,8 @@ open class App {
 
         authorityRepository.save(listOf(Authority("ROLE_USER"), Authority("ROLE_PROJECT_CREATOR")))
 
-        userRepository.save(User("test@test.com", "0", "sick", "Vasya Pupkin", "", authorityRepository.findAll()))
+        userRepository.save(User("project_creator@test.com", "0", "sick", "Project creator", "", authorityRepository.findAll()))
+        userRepository.save(User("user@test.com", "0", "sick", "User", "", listOf(Authority.from(SystemRole.USER))))
     }
 
     @Bean

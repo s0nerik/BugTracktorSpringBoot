@@ -20,7 +20,7 @@ data class User @PersistenceConstructor constructor(
         val avatarUrl: String,
 
         @DBRef
-        val authorities: List<Authority> = emptyList(),
+        val authorities: List<Authority> = listOf(Authority("ROLE_USER")),
 
         @Id val id: ObjectId? = null
 ) : UserDetails {
