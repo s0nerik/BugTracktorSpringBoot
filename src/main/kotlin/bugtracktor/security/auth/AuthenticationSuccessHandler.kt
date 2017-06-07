@@ -33,18 +33,21 @@ class AuthenticationSuccessHandler(
 
         val jws = tokenHelper.generateToken(user.username)
 
-        // Create token auth Cookie
-        val authCookie = Cookie(TOKEN_COOKIE, jws)
-        authCookie.path = "/"
-        authCookie.isHttpOnly = true
-        authCookie.maxAge = EXPIRES_IN
-        // Create flag Cookie
-        val userCookie = Cookie(USER_COOKIE, user.email)
-        userCookie.path = "/"
-        userCookie.maxAge = EXPIRES_IN
-        // Add cookie to response
-        response.addCookie(authCookie)
-        response.addCookie(userCookie)
+// Don't use cookies for now.
+
+//        // Create token auth Cookie
+//        val authCookie = Cookie(TOKEN_COOKIE, jws)
+//        authCookie.path = "/"
+//        authCookie.isHttpOnly = true
+//        authCookie.maxAge = EXPIRES_IN
+//        // Create flag Cookie
+//        val userCookie = Cookie(USER_COOKIE, user.email)
+//        userCookie.path = "/"
+//        userCookie.maxAge = EXPIRES_IN
+//        // Add cookie to response
+//        response.addCookie(authCookie)
+//        response.addCookie(userCookie)
+
         // JWT is also in the response
         val userTokenState = UserTokenState(jws, EXPIRES_IN)
         val jwtResponse = objectMapper.writeValueAsString(userTokenState)

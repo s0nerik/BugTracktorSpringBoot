@@ -17,7 +17,7 @@ data class User @PersistenceConstructor constructor(
         private val password: String,
         val nickname: String,
         val realName: String,
-        val avatarUrl: String,
+        val avatarUrl: String = "",
 
         @DBRef
         val authorities: List<Authority> = listOf(Authority(SystemRole.USER)),
