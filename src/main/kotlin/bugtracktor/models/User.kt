@@ -26,7 +26,9 @@ data class User @PersistenceConstructor constructor(
 ) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority> = authorities
 
+    @JsonIgnore
     override fun getUsername() = email
+    @JsonIgnore
     override fun getPassword() = password
 
     @JsonIgnore override fun isEnabled() = true

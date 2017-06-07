@@ -13,6 +13,8 @@ data class Authority @PersistenceConstructor constructor(
 
     override fun getAuthority() = name
 
+    override fun toString() = name
+
     companion object {
         fun from(role: SystemRole) = Authority(role.toString())
     }
