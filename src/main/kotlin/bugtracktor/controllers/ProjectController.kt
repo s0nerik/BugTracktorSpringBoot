@@ -8,17 +8,20 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/projects")
-@RestController()
-class ProjectController(val repository: ProjectRepository, val userRepository: UserRepository) {
+@RestController
+class ProjectController(
+        val projectRepository: ProjectRepository,
+        val userRepository: UserRepository
+) {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
-    fun findAll() = repository.findAll()
+    fun findAll() = projectRepository.findAll()
 
     @PreAuthorize("hasRole('ROLE_PROJECT_CREATOR')")
     @PostMapping("")
     fun create(@RequestBody projectData: CreateProjectData) {
         with(projectData) {
-            repository.save(Project(name, shortDescription, userRepository.findAll()[0]))
+            projectRepository.save(Project(name, shortDescription, userRepository.findAll()[0]))
         }
     }
 }
