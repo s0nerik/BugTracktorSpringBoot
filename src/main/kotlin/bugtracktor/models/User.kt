@@ -1,6 +1,7 @@
 package bugtracktor.models
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonView
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.PersistenceConstructor
@@ -22,6 +23,7 @@ data class User @PersistenceConstructor constructor(
         @DBRef
         val authorities: List<Authority> = listOf(Authority(SystemRole.USER)),
 
+        @JsonView(Views.Summary::class)
         @Id val id: ObjectId? = null
 ) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority> = authorities

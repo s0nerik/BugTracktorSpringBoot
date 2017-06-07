@@ -1,5 +1,6 @@
 package bugtracktor.models
 
+import com.fasterxml.jackson.annotation.JsonView
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.PersistenceConstructor
@@ -9,8 +10,11 @@ import java.util.*
 
 @Document
 data class Project @PersistenceConstructor constructor(
+        @JsonView(Views.Summary::class)
         val name: String,
+        @JsonView(Views.Summary::class)
         val shortDescription: String,
+        @JsonView(Views.Summary::class)
         @DBRef
         val creator: User,
         @DBRef
@@ -24,6 +28,7 @@ data class Project @PersistenceConstructor constructor(
 
         val fullDescription: String? = null,
 
+        @JsonView(Views.Summary::class)
         @Id val id: ObjectId? = null
 )
 
