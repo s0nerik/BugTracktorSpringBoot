@@ -20,12 +20,15 @@ data class User @PersistenceConstructor constructor(
         val realName: String,
         val avatarUrl: String = "",
 
+        @JsonIgnore
         @DBRef
         val authorities: List<Authority> = listOf(Authority(SystemRole.USER)),
 
         @JsonView(Views.Summary::class)
         @Id val id: ObjectId? = null
 ) : UserDetails {
+    val systemRoles = authorities.map { it.name }
+
     override fun getAuthorities(): Collection<GrantedAuthority> = authorities
 
     @JsonIgnore

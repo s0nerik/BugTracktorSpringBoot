@@ -1,6 +1,7 @@
 package bugtracktor
 
 import bugtracktor.models.Authority
+import bugtracktor.security.PermissionChecker
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext

@@ -34,6 +34,7 @@ class SampleDataInitializer(
         val users = mutableListOf<User>()
         users += User("user1@test.com", "0", "projectCreator", "Project creator", "", listOf(Authority(SystemRole.USER), Authority(SystemRole.PROJECT_CREATOR)))
         users += User("user2@test.com", "0", "justUser", "User", "", listOf(Authority(SystemRole.USER)))
+        users += User("admin@test.com", "0", "admin", "Admin", "", listOf(Authority(SystemRole.USER), Authority(SystemRole.PROJECT_CREATOR), Authority(SystemRole.ADMIN)))
 
         userRepository.save(users)
     }

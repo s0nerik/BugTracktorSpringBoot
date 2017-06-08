@@ -1,10 +1,7 @@
 package bugtracktor.models
 
-enum class SystemRole {
-    USER,
-    PROJECT_CREATOR,
-    ADMIN
-    ;
-
-    override fun toString() = "ROLE_$name"
+object SystemRole {
+    val USER = "ROLE_USER"
+    val PROJECT_CREATOR = "ROLE_PROJECT_CREATOR"
+    val ADMIN = "ROLE_ADMIN"
 }

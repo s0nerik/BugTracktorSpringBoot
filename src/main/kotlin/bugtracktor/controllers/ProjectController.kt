@@ -32,4 +32,11 @@ class ProjectController(
             projectRepository.save(Project(name, shortDescription, userRepository.findAll()[0]))
         }
     }
+
+    @PreAuthorize("hasPermission(#projectId, 'bugtracktor.models.Project', 'delete')")
+    @DeleteMapping("/{projectId}")
+    fun delete(@PathVariable projectId: ObjectId) {
+        projectRepository.delete(projectId)
+    }
+
 }

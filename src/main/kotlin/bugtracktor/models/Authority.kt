@@ -9,13 +9,6 @@ import org.springframework.security.core.GrantedAuthority
 data class Authority @PersistenceConstructor constructor(
         @Id val name: String
 ) : GrantedAuthority {
-    constructor(role: SystemRole) : this(role.toString())
-
     override fun getAuthority() = name
-
     override fun toString() = name
-
-    companion object {
-        fun from(role: SystemRole) = Authority(role.toString())
-    }
 }
