@@ -1,5 +1,6 @@
 package bugtracktor.controllers
 
+import bugtracktor.ext.currentUser
 import bugtracktor.models.CreateProjectData
 import bugtracktor.models.Project
 import bugtracktor.models.Views
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/projects")
 @RestController
 class ProjectController(
-        val projectRepository: ProjectRepository,
-        val userRepository: UserRepository
+        val projectRepository: ProjectRepository
 ) {
     @JsonView(Views.Summary::class)
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -29,7 +29,7 @@ class ProjectController(
     @PostMapping("")
     fun create(@RequestBody projectData: CreateProjectData) {
         with(projectData) {
-            projectRepository.save(Project(name, shortDescription, userRepository.findAll()[0]))
+            projectRepository.save(Project(name, shortDescription, currentUser))
         }
     }
 
