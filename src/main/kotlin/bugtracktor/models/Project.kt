@@ -18,13 +18,13 @@ data class Project @PersistenceConstructor constructor(
         @DBRef
         val creator: User,
         @DBRef
-        val members: List<ProjectMember> = emptyList(),
+        val members: MutableList<ProjectMember> = mutableListOf(),
         @DBRef
-        val issues: List<Issue> = emptyList(),
+        val issues: MutableList<Issue> = mutableListOf(),
         @DBRef
-        val issueTypes: List<IssueType> = emptyList(),
+        val issueTypes: MutableList<IssueType> = mutableListOf(),
         @DBRef
-        val roles: List<Role> = emptyList(),
+        val roles: MutableList<Role> = mutableListOf(),
 
         val fullDescription: String? = null,
 
@@ -32,7 +32,7 @@ data class Project @PersistenceConstructor constructor(
         @Id val id: ObjectId? = null
 )
 
-data class ProjectMember(
+data class ProjectMember @PersistenceConstructor constructor(
         val user: User,
         val project: Project,
         val joinDate: Date = Date(),
@@ -40,6 +40,13 @@ data class ProjectMember(
         val exitDate: Date? = null
 )
 
-data class Role(val name: String, val description: String, val permissions: List<Permission> = emptyList())
+data class Role @PersistenceConstructor constructor(
+        val name: String,
+        val description: String,
+        val permissions: List<Permission> = emptyList()
+)
 
-data class Permission(val name: String, val description: String)
+data class Permission @PersistenceConstructor constructor(
+        val name: String,
+        val description: String
+)

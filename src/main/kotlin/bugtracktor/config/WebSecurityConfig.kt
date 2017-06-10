@@ -35,6 +35,7 @@ class WebSecurityConfig(
     }
 
     override fun configure(http: HttpSecurity) {
+        // @formatter:off
         http
                 .csrf().disable()
 //                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
@@ -42,13 +43,18 @@ class WebSecurityConfig(
                 .exceptionHandling().authenticationEntryPoint( restAuthenticationEntryPoint ).and()
                 .addFilterBefore(jwtAuthenticationTokenFilter(), BasicAuthenticationFilter::class.java)
                         .authorizeRequests()
-                        .anyRequest()
-                        .authenticated().and()
+                            .anyRequest()
+                            .authenticated()
+                            .and()
                         .formLogin()
-                        .successHandler(authenticationSuccessHandler)
-                        .failureHandler(authenticationFailureHandler).and()
+                            .permitAll()
+                            .successHandler(authenticationSuccessHandler)
+                            .failureHandler(authenticationFailureHandler)
+                            .and()
                         .logout()
-                        .logoutSuccessUrl("/login")
+                            .permitAll()
+                            .logoutSuccessUrl("/login")
+        // @formatter:on
     }
 
 }

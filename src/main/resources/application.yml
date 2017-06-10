@@ -1,6 +1,8 @@
 app:
   name: bugtracktor
   user_cookie: c_user
+#  populate_db: "${POPULATE_DB}"
+#  reset_db: "${POPULATE_DB}"
 
 jwt:
   header: Authorization
